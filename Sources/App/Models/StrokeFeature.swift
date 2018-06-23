@@ -42,6 +42,6 @@ final class StrokeFeature: Content, Queryable, RowDecodable {
     }
     
     internal func updateParameters() -> [Encodable] {
-        return [kind, temporal, location, side, extent,]
+        return [kind, temporal, location, side, extent, id!]
     }
 }

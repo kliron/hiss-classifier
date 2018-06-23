@@ -36,6 +36,6 @@ final class AngioFeature: Content, Queryable, RowDecodable {
     }
     
     internal func updateParameters() -> [Encodable] {
-        return [vessel, side, finding,]
+        return [vessel, side, finding, id!]
     }
 }

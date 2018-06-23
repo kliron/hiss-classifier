@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/vapor/core.git",
         "state": {
           "branch": null,
-          "revision": "e5582911ed940289212a36321e15ec561d947dbe",
-          "version": "3.3.0"
+          "revision": "7f56a09995bf3c8df562be456bdcda405d9d0678",
+          "version": "3.4.1"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/vapor/postgresql.git",
         "state": {
           "branch": null,
-          "revision": "d67f6a56bf30a11a015d0364cb9f51aca2072129",
-          "version": "1.0.0-rc.4"
+          "revision": "c34533ebf7ae34cff1430a2803c83a02bb98557a",
+          "version": "1.0.0-rc.4.2.1"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/vapor/sql.git",
         "state": {
           "branch": null,
-          "revision": "9c8c19bd210b927ee52532d204e255efb11508a4",
-          "version": "2.0.0-beta.1.0.1"
+          "revision": "f89155dbf3dd48c838f79d28a636bbe32ad38693",
+          "version": "2.0.0-beta.3"
         }
       },
       {

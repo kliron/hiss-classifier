@@ -272,8 +272,7 @@ class App extends React.Component {
     }
 
     selectStroke = () => {
-        const feature = new StrokeFeature()
-        feature.report_uid = this.state.SelectedRadiology.report_uid
+        const feature = new StrokeFeature(this.state.SelectedRadiology)
         this.setState({
             SelectedFeatures: STROKE_FEATURES,
             Feature: feature
@@ -328,6 +327,8 @@ class App extends React.Component {
     }
 
     deleteFeature = async () => {
+        if (!confirm('Are you sure?')) return
+
         const id = this.state.Feature.id
         if (!id) return
 
@@ -407,20 +408,23 @@ class App extends React.Component {
         switch (this.state.SelectedFeatures) {
             case STROKE_FEATURES: {
                 const sf = new StrokeFeature(this.state.SelectedRadiology)
-                await createStrokeFeature(sf)
+                const id = (await createStrokeFeature(sf)).id
                 await this.setStrokeFeatures()
+                this.selectFeature(this.state.Features.StrokeFeatures.filter(f => f.id === id)[0])
                 break
             }
             case ANGIO_FEATURES: {
                 const af = new AngioFeature(this.state.SelectedRadiology)
-                await createAngioFeature(af)
+                const id = (await createAngioFeature(af)).id
                 await this.setAngioFeatures()
+                this.selectFeature(this.state.Features.AngioFeatures.filter(f => f.id === id)[0])
                 break
             }
             case DEGENERATIVE_FEATURES: {
                 const df = new DegenerativeFeature(this.state.SelectedRadiology)
-                await createDegenerativeFeature(df)
+                const id = (await createDegenerativeFeature(df)).id
                 await this.setDegenerativeFeatures()
+                this.selectFeature(this.state.Features.DegenerativeFeatures.filter(f => f.id === id)[0])
                 break
             }
             default:

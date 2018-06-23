@@ -87,7 +87,7 @@ async function getStrokeFeaturesFor(report_uid) {
 }
 
 async function getAngioFeaturesFor(report_uid) {
-    return _get(`/features/angio/$for/{report_uid}`)
+    return _get(`/features/angio/for/${report_uid}`)
 }
 
 async function getDegenerativeFeaturesFor(report_uid) {

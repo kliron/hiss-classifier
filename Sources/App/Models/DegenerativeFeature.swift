@@ -39,6 +39,6 @@ final class DegenerativeFeature: Content, Queryable, RowDecodable {
     }
     
     public func updateParameters() -> [Encodable] {
-        return [cortical_atrophy, cortical_atrophy_description, central_atrophy, microangiopathy,]
+        return [cortical_atrophy, cortical_atrophy_description, central_atrophy, microangiopathy, id!]
     }
 }

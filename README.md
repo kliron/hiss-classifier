@@ -14,3 +14,4 @@
 
     .build/release/Run serve --env production
 
+Open http://localhost:8080/index.html 

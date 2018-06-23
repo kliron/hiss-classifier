@@ -68,8 +68,6 @@ const StrokeFeature = ({feature, selected, selectFeature}) => {
              onClick={selectFeature}>
             <div className='col-12'>
                 <ul>
-                    <li className='id'><span>id: </span>{id}</li>
-                    <li className='radiology-id'><span>report_uid: </span>{report_uid}</li>
                     <li><span>kind: </span>{kind}</li>
                     <li><span>temporal: </span>{temporal}</li>
                     <li><span>location: </span>{location}</li>
@@ -94,8 +92,6 @@ const AngioFeature = ({feature, selected, selectFeature}) => {
              onClick={selectFeature}>
             <div className='col-12'>
                 <ul>
-                    <li className='id'><span>id: </span>{id}</li>
-                    <li className='radiology-id'><span>report_uid: </span>{report_uid}</li>
                     <li><span>finding: </span>{finding}</li>
                     <li><span>vessel: </span>{vessel}</li>
                     <li><span>side: </span>{side}</li>
@@ -118,8 +114,6 @@ const DegenerativeFeature = ({feature, selected, selectFeature}) => {
              onClick={selectFeature}>
             <div className='col-12'>
                 <ul>
-                    <li className='id'><span>id: </span>{id}</li>
-                    <li className='radiology-id'><span>report_uid: </span>{report_uid}</li>
                     <li><span>cortical_atrophy: </span>{corticalAtrophy}</li>
                     <li><span>cortical_atrophy_description: </span>{cortical_atrophy_description}</li>
                     <li><span>central_atrophy: </span>{central_atrophy}</li>

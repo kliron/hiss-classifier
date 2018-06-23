@@ -34,8 +34,7 @@ export default class LeftPane extends React.Component {
                               selected={this.props.SelectedRadiology}
                               selectRadiology={this.props.selectRadiology}/>)
         }
-
-        const from = this.props.currentOffset + 1 - FETCH_LIMIT
+        const from = FETCH_LIMIT < this.props.currentOffset ? (this.props.currentOffset + 1 - FETCH_LIMIT) : 1
         const to = this.props.currentOffset
         return (
             <div className='col-xs-6 col-sm-5 col-md-4 col-lg-3 col-xl-2' id='left-pane'>
