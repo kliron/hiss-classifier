@@ -37,7 +37,7 @@ export default class LeftPane extends React.Component {
         const from = FETCH_LIMIT < this.props.currentOffset ? (this.props.currentOffset + 1 - FETCH_LIMIT) : 1
         const to = this.props.currentOffset
         return (
-            <div className='col-xs-6 col-sm-5 col-md-4 col-lg-3 col-xl-2' id='left-pane'>
+            <div className='col-xs-6 col-sm-6 col-md-5 col-lg-4 col-xl-3' id='left-pane'>
 
                 <div className='row'>
                     <div className='col-xs-8' id='pid-input'>

@@ -7,11 +7,11 @@ public func routes(_ router: Router) throws {
 
     // About using params: https://docs.vapor.codes/3.0/getting-started/routing/
     router.get("radiology", "rows") { req -> Future<Int64> in
-        Radiology.getPageCount(on: req)
+        try Radiology.getPageCount(on: req)
     }
 
     router.get("radiology", "rows", "for", Int.parameter) { req -> Future<Int64> in
-        Radiology.getPageCountFor(patientId: try req.parameters.next(Int.self), on: req)
+        try Radiology.getPageCountFor(patientId: try req.parameters.next(Int.self), on: req)
     }
 
     router.get("radiology", "records", Int.parameter, Int.parameter) { req -> Future<[Radiology]> in
@@ -23,38 +23,38 @@ public func routes(_ router: Router) throws {
     }
     
     router.get("features", "for", Int.parameter) { req -> Future<RadiologyFeatures> in
-        Radiology.getFeaturesFor(reportUid: try req.parameters.next(Int.self), on: req)
+        try Radiology.getFeaturesFor(reportUid: try req.parameters.next(Int.self), on: req)
     }
     
-    router.get("features", "stroke", "for", Int.parameter) { (req: Request) -> Future<[StrokeFeature]> in
-        StrokeFeature.getFor(reportUid: try req.parameters.next(Int.self), on: req)
+    router.get("features", "stroke", "for", Int.parameter) { req -> Future<[StrokeFeature]> in
+        try StrokeFeature.getFor(reportUid: try req.parameters.next(Int.self), on: req)
     }
     
-    router.get("features", "angio", "for", Int.parameter) { (req: Request) -> Future<[AngioFeature]> in
-        AngioFeature.getFor(reportUid: try req.parameters.next(Int.self), on: req)
+    router.get("features", "angio", "for", Int.parameter) { req -> Future<[AngioFeature]> in
+        try AngioFeature.getFor(reportUid: try req.parameters.next(Int.self), on: req)
     }
     
-    router.get("features", "degenerative", "for", Int.parameter) { (req: Request) -> Future<[DegenerativeFeature]> in
-        DegenerativeFeature.getFor(reportUid: try req.parameters.next(Int.self), on: req)
+    router.get("features", "degenerative", "for", Int.parameter) { req -> Future<[DegenerativeFeature]> in
+        try DegenerativeFeature.getFor(reportUid: try req.parameters.next(Int.self), on: req)
     }
     
     /**
      * INSERT
      */
     
-    router.post("features", "stroke") { req -> Future<RequestResult> in
+    router.post("features", "stroke") { req throws -> Future<RequestResult> in
         try req.content.decode(StrokeFeature.self).flatMap { feature in
             feature.insert(on: req)
         }
     }
     
-    router.post("features", "angio") { req -> Future<RequestResult> in
+    router.post("features", "angio") { req throws -> Future<RequestResult> in
         try req.content.decode(AngioFeature.self).flatMap { feature in
             feature.insert(on: req)
         }
     }
     
-    router.post("features", "degenerative") { req -> Future<RequestResult> in
+    router.post("features", "degenerative") { req throws -> Future<RequestResult> in
         try req.content.decode(DegenerativeFeature.self).flatMap { feature in
             feature.insert(on: req)
         }
@@ -64,19 +64,19 @@ public func routes(_ router: Router) throws {
      * UPDATE
      */
 
-    router.put("features", "stroke") { req -> Future<RequestResult> in
+    router.put("features", "stroke") { req throws -> Future<RequestResult> in
         try req.content.decode(StrokeFeature.self).flatMap { feature in
             feature.update(on: req)
         }
     }
     
-    router.put("features", "angio") { req -> Future<RequestResult> in
+    router.put("features", "angio") { req throws -> Future<RequestResult> in
         try req.content.decode(AngioFeature.self).flatMap { feature in
             feature.update(on: req)
         }
     }
     
-    router.put("features", "degenerative") { req -> Future<RequestResult> in
+    router.put("features", "degenerative") { req throws -> Future<RequestResult> in
         try req.content.decode(DegenerativeFeature.self).flatMap { feature in
             feature.update(on: req)
         }
@@ -85,15 +85,15 @@ public func routes(_ router: Router) throws {
     /**
      * DELETE
      */
-    router.delete("features", "stroke", Int.parameter) { req -> Future<RequestResult> in
+    router.delete("features", "stroke", Int.parameter) { req throws -> Future<RequestResult> in
         try StrokeFeature.delete(on: req)
     }
     
-    router.delete("features", "angio", Int.parameter) { req -> Future<RequestResult> in
+    router.delete("features", "angio", Int.parameter) { req throws -> Future<RequestResult> in
         try AngioFeature.delete(on: req)
     }
     
-    router.delete("features", "degenerative", Int.parameter) { req -> Future<RequestResult> in
+    router.delete("features", "degenerative", Int.parameter) { req throws -> Future<RequestResult> in
         try DegenerativeFeature.delete(on: req)
     }
 }

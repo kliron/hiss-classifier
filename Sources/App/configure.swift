@@ -1,19 +1,19 @@
 import Vapor
 import PostgreSQL
 
-
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
     /// Register services first
-     try services.register(PostgreSQLProvider())
-     // Configure the database
-     let psqlConfig = PostgreSQLDatabaseConfig(hostname: "localhost",
-                                               port: 5432,
-                                               username: "kliron",
-                                               database: "hiss",
-                                               //password: "",
-                                               transport: .cleartext)
-     services.register(psqlConfig)
+    try services.register(PostgreSQLProvider())
+
+    // Configure the database
+    let psqlConfig = PostgreSQLDatabaseConfig(hostname: "localhost",
+                                              port: 5432,
+                                              username: "kliron",
+                                              database: "hiss",
+                                              //password: "",
+                                              transport: .cleartext)
+    services.register(psqlConfig)    
     
     /// Register routes to the router
     let router = EngineRouter.default()

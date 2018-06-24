@@ -8,7 +8,7 @@
 
 ## Build 
 
-    vapor build --release
+    vapor build --release --verbose
     
 ## Run 
 

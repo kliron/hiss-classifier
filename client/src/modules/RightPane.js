@@ -108,13 +108,13 @@ AngioFeature.propTypes = {
 }
 
 const DegenerativeFeature = ({feature, selected, selectFeature}) => {
-    const {id, report_uid, corticalAtrophy, cortical_atrophy_description, central_atrophy, microangiopathy} = feature
+    const {cortical_atrophy, cortical_atrophy_description, central_atrophy, microangiopathy} = feature
     return (
         <div className={selected.id === feature.id ? "row feature selected" : "row feature"}
              onClick={selectFeature}>
             <div className='col-12'>
                 <ul>
-                    <li><span>cortical_atrophy: </span>{corticalAtrophy}</li>
+                    <li><span>cortical_atrophy: </span>{cortical_atrophy}</li>
                     <li><span>cortical_atrophy_description: </span>{cortical_atrophy_description}</li>
                     <li><span>central_atrophy: </span>{central_atrophy}</li>
                     <li><span>microangiopathy: </span>{microangiopathy}</li>
@@ -333,18 +333,16 @@ export default class RightPane extends React.Component {
             return null
         }
 
-        const {id, report_uid, eid, pnr, pid, request, ordered_at, report} = SelectedRadiology
+        const {report_uid, eid, pid, request, ordered_at, report} = SelectedRadiology
         const selectedFeatures = this.props.SelectedFeatures
         return (
-            <div className='col-md-8 col-lg-9 col-xl-10' id='right-pane'>
+            <div className='col-xs-6 col-sm-6 col-md-7 col-lg-8 col-xl-9' id='right-pane'>
                 <div className='row'>
                     <div className='col-12' id='radiology-info'>
                         <ul>
-                            <li><span>id: </span>{id}</li>
+                            <li><span>pid: </span>{pid}</li>
                             <li><span>report_uid: </span>{report_uid}</li>
                             <li><span>eid: </span>{eid}</li>
-                            <li><span>pnr: </span>{pnr}</li>
-                            <li><span>pid: </span>{pid}</li>
                             <li><span>ordered_at: </span>{ordered_at}</li>
                             <li><span>request: </span>{request}</li>
                         </ul>
@@ -384,7 +382,7 @@ export default class RightPane extends React.Component {
                             </div>
                             <div className='col-6'>
                                 <button
-                                    className={this.props.Feature.id === 0 ? "btn btn-danger float-right disabled" : "btn btn-danger float-right"}
+                                    className={this.props.Feature.id === null ? "btn btn-danger float-right disabled" : "btn btn-danger float-right"}
                                     onClick={this.props.deleteFeature}>Delete
                                 </button>
                             </div>

@@ -8,3 +8,7 @@ node_modules
 .vscode
 .idea
 Public/*
+*.db
+*.sqlite3
+*.csv
+

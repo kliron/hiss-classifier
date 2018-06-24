@@ -234,7 +234,8 @@ class App extends React.Component {
             Offset: offset + records.length,
             SelectedRadiology: radiology,
             Features: features,
-            Feature: feature
+            Feature: feature,
+            SelectedFeatures: STROKE_FEATURES
         })
     }
 
@@ -255,8 +256,8 @@ class App extends React.Component {
     }
 
     selectRadiology = async (report_uid) => {
-        const selected = this.state.Radiology.filter(r => r.report_uid === report_uid)
-        if (selected.length === 0) {
+        const selected = this.state.Radiology.filter(r => r.report_uid === report_uid)[0]
+        if (selected === undefined) {
             alert(`Something went horribly wrong, no radiology record with id ${report_uid} exists!`)
             return
         }
@@ -264,7 +265,7 @@ class App extends React.Component {
         const feature = new StrokeFeature(selected)
 
         this.setState({
-            SelectedRadiology: selected[0],
+            SelectedRadiology: selected,
             SelectedFeatures: STROKE_FEATURES,
             Features: features,
             Feature: feature
@@ -330,7 +331,7 @@ class App extends React.Component {
         if (!confirm('Are you sure?')) return
 
         const id = this.state.Feature.id
-        if (!id) return
+        if (id === null) return
 
         switch (this.state.SelectedFeatures) {
             case STROKE_FEATURES: {
@@ -371,19 +372,19 @@ class App extends React.Component {
         let saveFn
         switch (this.state.SelectedFeatures) {
             case STROKE_FEATURES: {
-                saveFn = id === 0 ? createStrokeFeature : updateStrokeFeature
+                saveFn = id === null ? createStrokeFeature : updateStrokeFeature
                 await saveFn(data)
                 await this.setStrokeFeatures()
                 break
             }
             case ANGIO_FEATURES: {
-                saveFn = id === 0 ? createAngioFeature : updateAngioFeature
+                saveFn = id === null ? createAngioFeature : updateAngioFeature
                 await saveFn(data)
                 await this.setAngioFeatures()
                 break
             }
             case DEGENERATIVE_FEATURES: {
-                saveFn = id === 0 ? createDegenerativeFeature : updateDegenerativeFeature
+                saveFn = id === null ? createDegenerativeFeature : updateDegenerativeFeature
                 await saveFn(data)
                 await this.setDegenerativeFeatures()
                 break
@@ -409,6 +410,7 @@ class App extends React.Component {
             case STROKE_FEATURES: {
                 const sf = new StrokeFeature(this.state.SelectedRadiology)
                 const id = (await createStrokeFeature(sf)).id
+                console.log(id)
                 await this.setStrokeFeatures()
                 this.selectFeature(this.state.Features.StrokeFeatures.filter(f => f.id === id)[0])
                 break

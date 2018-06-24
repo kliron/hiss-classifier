@@ -31,8 +31,13 @@ final class Values {
         "temporo-parietal",
         "temporo-occipital",
         "parieto-occipital",
+        "capsula interna anterior limb",
+        "capsula interna posterior limb",
         "corona radiata",
         "thalamus",
+        "nucleus caudatus",
+        "putamen",
+        "globus pallidus",
         "basal ganglia",
         "mesencephalon",
         "pons",
@@ -52,6 +57,8 @@ final class Values {
     ]
 
     static let Extent = [
+        "lacunar",
+        "lacunar, multiple",
         "small",
         "small, multiple",
         "medium",
@@ -74,6 +81,8 @@ final class Values {
 
     static let Vessels = [
         "Aorta",
+        "CCA",
+        "ECA",
         "ICA",
         "A1",
         "A2",
@@ -81,6 +90,7 @@ final class Values {
         "M1",
         "M2",
         "M3",
+        "M4",
         "P1",
         "P2",
         "P3",

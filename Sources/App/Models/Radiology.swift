@@ -44,7 +44,6 @@ final class Radiology: Content, Pageable, RowDecodable {
         examination_started_at: Date?,
         report_type: String,
         report: String) {
-        
         self.id = id
         self.pid = pid
         self.eid = eid
@@ -63,18 +62,18 @@ final class Radiology: Content, Pageable, RowDecodable {
     internal static let selectPagedSql = "SELECT * FROM radiology ORDER BY id ASC LIMIT $1 OFFSET $2"
     internal static let selectPagedForSql = "SELECT * FROM radiology WHERE pid = $1 ORDER BY id ASC LIMIT $2 OFFSET $3"
     
-    public static func getFeaturesFor(reportUid rid: Int, on req: Request) -> Future<RadiologyFeatures> {
-        let future1 = StrokeFeature.getFor(reportUid: rid, on: req)
+    public static func getFeaturesFor(reportUid rid: Int, on req: Request) throws -> Future<RadiologyFeatures> {
+        let future1 = try StrokeFeature.getFor(reportUid: rid, on: req)
                 .map(to: RadiologyFeatures.self) { features in
                     RadiologyFeatures(strokeFeatures: features)
                 }
         
-        let future2 = AngioFeature.getFor(reportUid: rid, on: req)
+        let future2 = try AngioFeature.getFor(reportUid: rid, on: req)
                 .map(to: RadiologyFeatures.self) { features in
                     RadiologyFeatures(angioFeatures: features)
                 }
         
-        let future3 = DegenerativeFeature.getFor(reportUid: rid, on: req)
+        let future3 = try DegenerativeFeature.getFor(reportUid: rid, on: req)
                 .map(to: RadiologyFeatures.self) { features in
                     RadiologyFeatures(degenerativeFeatures: features)
                 }
